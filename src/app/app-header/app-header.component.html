@@ -1,0 +1,34 @@
+<ng-container>
+    <div *ngIf="!destination" class="header">
+        <nav>
+            <a class="navbar-brand" href="#">
+                <img src="../../assets/header-logo.png" alt="" class="logo">
+            </a>
+        </nav>
+    </div>
+    <app-search *ngIf="!destination" [showTable]="true" (DestinationId)="fnDestinationId($event)"></app-search>
+    <div *ngIf="destination" id="abc" style="background-image: url({{destination.thumbnail.image_url}})">
+        <nav>
+            <a class="navbar-brand" href="#">
+                <img src="../../assets/header-logo.png" alt="" class="logo">
+            </a>
+
+            <app-search *ngIf="destination" [showTable]="false" (DestinationId)="fnDestinationId($event)"></app-search>
+        </nav>
+    </div>
+
+    <div *ngIf="destination" class="bg-color">
+        <div class="banner-text text-center">
+            <div class="text-border">
+                <h2 class="text-dec">{{destination.country_name}}</h2>
+            </div>
+            <div class="intro-para text-center quote">
+                <p class="small-text">{{destination.city}}</p>
+            </div>
+
+        </div>
+    </div>
+    <app-result *ngIf="destination && activities.length != 0" [listActivities]="activities" [destination]="destination">
+    </app-result>
+
+</ng-container>

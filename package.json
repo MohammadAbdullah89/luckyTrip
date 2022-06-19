@@ -18,7 +18,13 @@
     "@angular/platform-browser": "~12.2.0",
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
+    "angular-ng-autocomplete": "^2.0.8",
+    "core-js": "^3.16.0",
+    "font-awesome": "^4.7.0",
+    "ngx-chips": "^3.0.0",
     "rxjs": "~6.6.0",
+    "rxjs-compat": "^6.6.7",
+    "sweetalert2": "^11.4.18",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },

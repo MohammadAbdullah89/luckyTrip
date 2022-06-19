@@ -1,0 +1,44 @@
+<div *ngIf="isBusy" style="width:100%;height:100vh;background:#000;position: absolute;z-index: 105;" id="loader">
+    <div class="la-ball-scale-ripple-multiple la-2x"
+        style="position: absolute;left: 50%;top: 50%;transform: translate(-50%,-50%);">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+
+<ng-container *ngIf="!isBusy">
+    <div class="content wrapper">
+        <h2>
+            What is it like?
+        </h2>
+
+        <p *ngIf="destination && destination.description" [innerHtml]="destination.description.text">
+        </p>
+
+    </div>
+
+    <table class="center" style="width: 50%">
+        <thead>
+            <caption class="tableTilte">Blog Posts</caption>
+
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of  [].constructor(numberLoop); index as i;">
+                <td *ngFor="let a_item of  getData(i); index as k;">
+                    <img [src]="a_item.thumbnail.image_url" alt="" onerror="this.src = './../assets/defaultCity.png'"
+                        width="310px" height="230px"
+                        style="display: flex;  justify-content: center;  margin: auto; border-radius: 10px">
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="content">
+        <h4>
+            Find a trip to Roma
+        </h4>
+        <p>Tap the Lucky button to get started...</p>
+        <div id="breathing-button"> <img src="../../assets/LuckyButton-min.png" alt="" class="logo"></div>
+    </div>
+</ng-container>

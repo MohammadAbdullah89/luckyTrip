@@ -46,7 +46,7 @@
         <tbody>
             <tr scope="row" *ngFor="let item of  [].constructor(numberLoop); index as i;">
                 <td *ngFor="let d_item of  getData(i); index as k;">
-                    <a (click)="onClickTrending(d_item)">
+                    <a (click)="onClickTrending(d_item)" data-toggle="tooltip" data-placement="top" [title]="d_item.city+' - '+ d_item.country_name">
                         <img [src]="d_item.image_url" onerror="this.src = './../assets/defaultCity.png'" alt=""
                             width="310px" height="230px"
                             style="display: flex;  justify-content: center;  margin: auto; border-radius: 10px">

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { SearchService } from "../services/search.service";
 
 @Component({
@@ -20,7 +20,7 @@ export class AppHeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
- 
+
   fnDestinationId(data: any) {
     this.id = data;
     if (this.id != 0) {
@@ -39,4 +39,17 @@ export class AppHeaderComponent implements OnInit {
 
     }
   }
+
+  @HostListener('window:scroll', ['$event']) // for window scroll events
+  onScroll(event: any) {
+    let element = Array.from(document.getElementsByClassName('header') as HTMLCollectionOf<HTMLElement>)[0];
+    if (window.pageYOffset > element.clientHeight) {
+      element.classList.add("header2")
+
+    }
+    else {
+      element.classList.remove("header2")
+    }
+  }
+
 }

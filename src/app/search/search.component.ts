@@ -71,7 +71,10 @@ export class SearchComponent implements OnInit {
         });
 
       },
-      err => console.log(err)
+      err => {
+        this.isBusy = false;
+        console.log(err)
+      }
     );
   }
 
@@ -176,7 +179,10 @@ export class SearchComponent implements OnInit {
           this.numberLoop = Math.ceil(this.destinations.length / 3);
         }
       },
-      err => console.log(err)
+      err => {
+        this.isBusy = false;
+        console.log(err)
+      }
     );
   }
   onSearch() {
@@ -225,7 +231,10 @@ export class SearchComponent implements OnInit {
             this.inputItemObj = null
           }
         },
-        err => console.log(err)
+        err => {
+          this.isBusy = false;
+          console.log(err)
+        }
       );
 
     }

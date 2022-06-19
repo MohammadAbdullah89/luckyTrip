@@ -16,6 +16,7 @@ export class AppHeaderComponent implements OnInit {
   activities: any[] = [];
 
   id = 0;
+  isBusy = false;
 
   ngOnInit(): void {
   }
@@ -24,13 +25,22 @@ export class AppHeaderComponent implements OnInit {
   fnDestinationId(data: any) {
     this.id = data;
     if (this.id != 0) {
+      this.isBusy = true;
       this.searchService.getDestinationById(this.id).subscribe(
         data2 => {
+          setTimeout(() => {
+
+          this.isBusy = false;
+        }, 100);;
+
           this.destination = data2.destination;
           this.activities = data2.activities;
 
         },
-        err => console.log(err)
+        err => {
+          this.isBusy = false;
+          console.log(err)
+        }
       );
     }
     else {

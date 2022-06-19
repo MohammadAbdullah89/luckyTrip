@@ -8,7 +8,7 @@
     </div>
     <app-search *ngIf="!destination" [showTable]="true" (DestinationId)="fnDestinationId($event)"></app-search>
     <div *ngIf="destination" id="abc" style="background-image: url({{destination.thumbnail.image_url}})">
-        <nav>
+        <nav  class="header">
             <a class="navbar-brand" href="#">
                 <img src="../../assets/header-logo.png" alt="" class="logo">
             </a>

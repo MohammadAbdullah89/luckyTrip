@@ -262,6 +262,45 @@ body {
     }
 }
 
+@media screen and (max-width:1570px) {
+
+    .wrapper {
+        margin: 63px !important;
+        font-size: 18px !important;
+
+        p {
+            width: 100% !important;
+        }
+    }
+
+    .content h2 {
+        margin-top: 5px !important;
+        font-size: 26px !important;
+    }
+
+    tr {
+        display: grid;
+    }
+
+    td {
+        padding: 5px;
+    }
+
+    .hedSearch {
+        margin-right: 0px !important;
+        float: right !important;
+
+        input {
+            width: 50% !important;
+        }
+
+        .input-group {
+            width: 70% !important;
+
+        }
+    }
+}
+
 @media screen and (max-width:950px) {
 
     .wrapper {
@@ -281,22 +320,26 @@ body {
     tr {
         display: grid;
     }
+
     td {
         padding: 5px;
     }
+
     .hedSearch {
         margin-right: 0px !important;
         float: left !important;
-    input {
-        width: 50% !important;
-    }
 
-    .input-group {
-        width: 70% !important;
+        input {
+            width: 50% !important;
+        }
 
+        .input-group {
+            width: 70% !important;
+
+        }
     }
 }
-}
+
 @media screen and (max-width:750px) {
     .wrapper {
         margin: 63px !important;
@@ -367,33 +410,32 @@ body {
 
 .colored-toast.swal2-icon-success {
     background-color: #a5dc86 !important;
-  }
-  
-  .colored-toast.swal2-icon-error {
+}
+
+.colored-toast.swal2-icon-error {
     background-color: #f27474 !important;
-  }
-  
-  .colored-toast.swal2-icon-warning {
+}
+
+.colored-toast.swal2-icon-warning {
     background-color: #f8bb86 !important;
-  }
-  
-  .colored-toast.swal2-icon-info {
+}
+
+.colored-toast.swal2-icon-info {
     background-color: #3fc3ee !important;
-  }
-  
-  .colored-toast.swal2-icon-question {
+}
+
+.colored-toast.swal2-icon-question {
     background-color: #87adbd !important;
-  }
-  
-  .colored-toast .swal2-title {
+}
+
+.colored-toast .swal2-title {
     color: white;
-  }
-  
-  .colored-toast .swal2-close {
+}
+
+.colored-toast .swal2-close {
     color: white;
-  }
-  
-  .colored-toast .swal2-html-container {
+}
+
+.colored-toast .swal2-html-container {
     color: white;
-  }
-  
+}

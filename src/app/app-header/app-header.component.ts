@@ -19,19 +19,26 @@ export class AppHeaderComponent implements OnInit {
   isBusy = false;
 
   ngOnInit(): void {
+    let localId = localStorage.getItem('id');
+    if (localId != null && localId != '0') {
+      this.fnDestinationId(localId);
+    }
   }
 
 
   fnDestinationId(data: any) {
     this.id = data;
     if (this.id != 0) {
+      localStorage.removeItem('id');
+      localStorage.setItem('id', this.id.toString());
+
       this.isBusy = true;
       this.searchService.getDestinationById(this.id).subscribe(
         data2 => {
           setTimeout(() => {
 
-          this.isBusy = false;
-        }, 100);;
+            this.isBusy = false;
+          }, 100);;
 
           this.destination = data2.destination;
           this.activities = data2.activities;

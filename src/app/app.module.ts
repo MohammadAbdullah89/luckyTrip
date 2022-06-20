@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SearchComponent } from './search/search.component';
 import { ResultComponent } from './result/result.component';
-import { AppHeaderComponent } from './app-header/app-header.component';
 import { CountriesService } from './services/countries.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -19,7 +18,6 @@ import { SearchService } from './services/search.service';
     AppComponent,
     SearchComponent,
     ResultComponent,
-    AppHeaderComponent,
     
   ],
   imports: [

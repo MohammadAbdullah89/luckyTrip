@@ -52,8 +52,6 @@ export class SearchComponent implements OnInit {
   ngOnInit(): void {
     this.getCountries()
 
-    console.log('on')
-
     let localId = localStorage.getItem('id');
     if (localId != null && localId != '0') {
       this.onClickTrending(localId);

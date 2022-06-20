@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, HostListener } from '@angular/core';
 import { CountriesService } from "../services/countries.service";
 import { SearchService } from "../services/search.service";
 
@@ -14,12 +14,13 @@ export class SearchComponent implements OnInit {
 
   @Input() showTable = true;
 
-  @Output() listDestination: EventEmitter<any[]> =
-    new EventEmitter<any[]>();
+  // @Output() listDestination: EventEmitter<any[]> =
+  //   new EventEmitter<any[]>();
 
-  @Output() DestinationId: EventEmitter<number> =
-    new EventEmitter<number>();
+  // @Output() DestinationId: EventEmitter<number> =
+  //   new EventEmitter<number>();
 
+  DestinationId: number = 0;
 
   constructor(private countriesService: CountriesService,
     private searchService: SearchService,
@@ -45,10 +46,22 @@ export class SearchComponent implements OnInit {
   numberLoop: number = 0;
   isBusy = false;
 
+  destination: any = null;
+  activities: any[] = [];
+
   ngOnInit(): void {
     this.getCountries()
 
-    this.getDefaultdestination();
+    console.log('on')
+
+    let localId = localStorage.getItem('id');
+    if (localId != null && localId != '0') {
+      this.onClickTrending(localId);
+      localStorage.removeItem('id');
+    }
+    else{
+      this.getDefaultdestination();
+    }
   }
 
   getCountries() {
@@ -188,7 +201,8 @@ export class SearchComponent implements OnInit {
   onSearch() {
 
     this.showTable = true;
-    this.DestinationId.emit(0);
+    // this.DestinationId.emit(0);
+    this.DestinationId = 0;
 
     if (this.inputItem == null || this.inputItem == '')
       this.getDefaultdestination()
@@ -199,6 +213,8 @@ export class SearchComponent implements OnInit {
 
 
       this.isBusy = true;
+      this.destination = null;
+      this.activities = [];
       this.searchService.search(this.inputItemObj['type'], this.inputItemObj['name']).subscribe(
         async data2 => {
           setTimeout(() => {
@@ -240,6 +256,7 @@ export class SearchComponent implements OnInit {
     }
 
 
+
   }
   getData(number: number) {
     if (this.destinations.length == 0) {
@@ -250,10 +267,53 @@ export class SearchComponent implements OnInit {
     }
   }
   onClickTrending(data: any) {
-    this.DestinationId.emit(data.id);
+    // this.DestinationId.emit(data.id);
     this.showTable = false;
 
+    this.DestinationId = data;
+    if (this.DestinationId != 0) {
+      localStorage.removeItem('id');
+      localStorage.setItem('id', this.DestinationId.toString());
+
+      this.isBusy = true;
+      this.searchService.getDestinationById(this.DestinationId).subscribe(
+        data2 => {
+          setTimeout(() => {
+
+            this.isBusy = false;
+          }, 100);;
+
+          this.destination = data2.destination;
+          this.activities = data2.activities;
+
+        },
+        err => {
+          this.isBusy = false;
+          console.log(err)
+        }
+      );
+    }
+    else {
+      localStorage.removeItem('id');
+      this.destination = null;
+      this.activities = [];
+
+    }
+
   }
+
+  @HostListener('window:scroll', ['$event']) // for window scroll events
+  onScroll(event: any) {
+    let element = Array.from(document.getElementsByClassName('header') as HTMLCollectionOf<HTMLElement>)[0];
+    if (window.pageYOffset > element.clientHeight) {
+      element.classList.add("header2")
+
+    }
+    else {
+      element.classList.remove("header2")
+    }
+  }
+
 }
 export class TagModel {
   display: string | undefined;

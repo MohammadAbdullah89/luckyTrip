@@ -7,7 +7,7 @@
     </div>
 </div>
 
-<ng-container *ngIf="!isBusy">
+<!-- <ng-container *ngIf="!isBusy">
     <div class="content" *ngIf="showTable">
         <h2>
             Search LuckyTrip
@@ -46,18 +46,137 @@
         <tbody>
             <tr scope="row" *ngFor="let item of  [].constructor(numberLoop); index as i;">
                 <td *ngFor="let d_item of  getData(i); index as k;">
-                    <a (click)="onClickTrending(d_item)" data-toggle="tooltip" data-placement="top" [title]="d_item.city+' - '+ d_item.country_name">
+                    <a (click)="onClickTrending(d_item)" data-toggle="tooltip" data-placement="top"
+                        [title]="d_item.city+' - '+ d_item.country_name">
                         <img [src]="d_item.image_url" onerror="this.src = './../assets/defaultCity.png'" alt=""
                             width="310px" height="230px"
                             style="display: flex;  justify-content: center;  margin: auto; border-radius: 10px">
-                        <!-- {{d_item.city}}
-                        -
-                        {{d_item.country_name}} -->
-
                     </a>
 
                 </td>
             </tr>
         </tbody>
     </table>
+</ng-container> -->
+
+
+
+<ng-container *ngIf="!isBusy">
+    <div *ngIf="!destination" class="header">
+        <nav>
+            <a class="navbar-brand" href="#">
+                <img src="../../assets/header-logo.png" alt="" class="logo">
+            </a>
+        </nav>
+    </div>
+    <!-- <app-search *ngIf="!destination" [showTable]="true" (DestinationId)="fnDestinationId($event)"></app-search> -->
+
+    <ng-container >
+        <div class="content" *ngIf="showTable">
+            <h2>
+                Search LuckyTrip
+            </h2>
+
+            <h4>
+                350 destination, 1500 blog posts,Unlimited Trips
+            </h4>
+
+        </div>
+        <div class="container d-flex justify-content-center"
+            [ngClass]=" showTable == false ? 'hedSearch' : 'searchPage'">
+            <div class="card mt-5 p-4">
+                <div class="input-group mb-3">
+                    <input type="text" [(ngModel)]="inputItem" (ngModelChange)="getFilteredList()"
+                        class="combobox-input form-control mainLoginInput" (keyup)="onKeyPress($event)"
+                        (blur)="toggleListDisplay(0)" (focus)="toggleListDisplay(1)"
+                        placeholder="&#61442; Enter a Destination">
+                    <div class="combobox-options" *ngIf="!listHidden">
+                        <list-item *ngFor="let item of filteredList;let i = index" (click)="selectItem(i)"
+                            [ngClass]="{'selected': i===selectedIndex}">{{item.name}} <span
+                                *ngIf="item && item.parent != null">-&nbsp;{{item.parent}}</span></list-item>
+                    </div>
+                    <div class="input-group-append"><button class="btn btn-primary" (click)="onSearch()">Go</button>
+                    </div>
+                </div>
+                <br>
+            </div>
+
+
+
+        </div>
+        <table class="center" style="width: 50%" *ngIf="showTable && numberLoop !=0">
+            <thead>
+                <caption class="tableTilte">Trending</caption>
+
+            </thead>
+            <tbody>
+                <tr scope="row" *ngFor="let item of  [].constructor(numberLoop); index as i;">
+                    <td *ngFor="let d_item of  getData(i); index as k;">
+                        <a (click)="onClickTrending(d_item.id)" data-toggle="tooltip" data-placement="top"
+                            [title]="d_item.city+' - '+ d_item.country_name">
+                            <img [src]="d_item.image_url" onerror="this.src = './../assets/defaultCity.png'" alt=""
+                                width="310px" height="230px"
+                                style="display: flex;  justify-content: center;  margin: auto; border-radius: 10px">
+                            <!-- {{d_item.city}}
+                            -
+                            {{d_item.country_name}} -->
+
+                        </a>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </ng-container>
+
+
+    <div *ngIf="destination && activities.length != 0 && !isBusy" id="abc" style="background-image: url({{destination.thumbnail.image_url}})">
+        <nav class="header">
+            <a class="navbar-brand" href="#">
+                <img src="../../assets/header-logo.png" alt="" class="logo">
+            </a>
+
+            <!-- <app-search *ngIf="destination" [showTable]="false" (DestinationId)="fnDestinationId($event)"></app-search> -->
+
+            <ng-container *ngIf="!isBusy">
+                <div class="container d-flex justify-content-center"
+                    [ngClass]=" showTable == false ? 'hedSearch' : 'searchPage'">
+                    <div class="card mt-5 p-4">
+                        <div class="input-group mb-3">
+                            <input type="text" [(ngModel)]="inputItem" (ngModelChange)="getFilteredList()"
+                                class="combobox-input form-control mainLoginInput" (keyup)="onKeyPress($event)"
+                                (blur)="toggleListDisplay(0)" (focus)="toggleListDisplay(1)"
+                                placeholder="&#61442; Enter a Destination">
+                            <div class="combobox-options" *ngIf="!listHidden">
+                                <list-item *ngFor="let item of filteredList;let i = index" (click)="selectItem(i)"
+                                    [ngClass]="{'selected': i===selectedIndex}">{{item.name}} <span
+                                        *ngIf="item && item.parent != null">-&nbsp;{{item.parent}}</span></list-item>
+                            </div>
+                            <div class="input-group-append"><button class="btn btn-primary"
+                                    (click)="onSearch()">Go</button></div>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+            </ng-container>
+
+
+        </nav>
+    </div>
+
+    <div *ngIf="destination && activities.length != 0 && !isBusy" class="bg-color">
+        <div class="banner-text text-center">
+            <div class="text-border">
+                <h2 class="text-dec">{{destination.country_name}}</h2>
+            </div>
+            <div class="intro-para text-center quote">
+                <p class="small-text">{{destination.city}}</p>
+            </div>
+
+        </div>
+    </div>
+    <app-result *ngIf="destination && activities.length != 0 && !isBusy" [listActivities]="activities"
+        [destination]="destination">
+    </app-result>
+
 </ng-container>

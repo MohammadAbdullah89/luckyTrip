@@ -29,12 +29,29 @@
 
         </div>
         <div *ngIf="showTable" class="container d-flex justify-content-center" [ngClass]="'searchPage'">
-            <div class="card mt-5 p-4">
+            <div class="searchbar">
+                <a class="search_icon"><i class="fas fa-search"></i></a>
+
+                <!-- <input class="search_input" type="text" name="" placeholder="Search..."> -->
+                <input type="text" [(ngModel)]="inputItem" (ngModelChange)="getFilteredList()"
+                    class="search_input combobox-input" (keyup)="onKeyPress($event)" (blur)="toggleListDisplay(0)"
+                    (focus)="toggleListDisplay(1)" placeholder="Enter a Destination ...">
+
+                <a (click)="onSearch()" class="search_btn">Go</a>
+            </div>
+            <div class="combobox-options" *ngIf="!listHidden">
+                <list-item *ngFor="let item of filteredList;let i = index" (click)="selectItem(i)"
+                    [ngClass]="{'selected': i===selectedIndex}">{{item.name}} <span
+                        *ngIf="item && item.parent != null">-&nbsp;{{item.parent}}</span></list-item>
+            </div>
+
+
+
+            <!-- <div class="card mt-5 p-4">
                 <div class="input-group mb-3">
                     <input type="text" [(ngModel)]="inputItem" (ngModelChange)="getFilteredList()"
-                        class="combobox-input form-control" (keyup)="onKeyPress($event)"
-                        (blur)="toggleListDisplay(0)" (focus)="toggleListDisplay(1)"
-                        placeholder="Enter a Destination">
+                        class="combobox-input form-control" (keyup)="onKeyPress($event)" (blur)="toggleListDisplay(0)"
+                        (focus)="toggleListDisplay(1)" placeholder="Enter a Destination">
                     <div class="combobox-options" *ngIf="!listHidden">
                         <list-item *ngFor="let item of filteredList;let i = index" (click)="selectItem(i)"
                             [ngClass]="{'selected': i===selectedIndex}">{{item.name}} <span
@@ -44,17 +61,18 @@
                     </div>
                 </div>
                 <br>
-            </div>
+            </div> -->
 
 
 
         </div>
 
         <div class="container" *ngIf="showTable && numberLoop !=0">
-        <caption class="tableTilte">Trending</caption>
+            <caption class="tableTilte">Trending</caption>
 
             <div class="row">
-                <div class="locationCol col-12 col-md-6 col-lg-4" style="overflow:hidden" *ngFor="let d_item of  filterDestinations">
+                <div class="locationCol col-12 col-md-6 col-lg-4" style="overflow:hidden"
+                    *ngFor="let d_item of  filterDestinations">
                     <a (click)="onClickTrending(d_item.id)" data-toggle="tooltip" data-placement="top"
                         [title]="d_item.city+' - '+ d_item.country_name">
                         <img [src]="d_item.image_url" onerror="this.src = './../assets/defaultCity.png'" alt=""
@@ -63,8 +81,8 @@
                 </div>
             </div>
         </div>
-        <div *ngIf="showTable && numberLoop !=0" style="padding:50px">  </div>
-        
+        <div *ngIf="showTable && numberLoop !=0" style="padding:50px"> </div>
+
     </ng-container>
 
 
@@ -75,12 +93,11 @@
                 <img src="../../assets/header-logo.png" alt="" class="logo">
             </a>
 
-            <!-- <app-search *ngIf="destination" [showTable]="false" (DestinationId)="fnDestinationId($event)"></app-search> -->
 
             <ng-container *ngIf="!isBusy && showTable == false">
                 <div class="container d-flex justify-content-center"
                     [ngClass]=" showTable == false ? 'hedSearch' : 'searchPage'">
-                    <div class="card mt-5 p-4">
+                    <!-- <div class="card mt-5 p-4">
                         <div class="input-group mb-3">
                             <input type="text" [(ngModel)]="inputItem" (ngModelChange)="getFilteredList()"
                                 class="combobox-input form-control" (keyup)="onKeyPress($event)"
@@ -95,6 +112,23 @@
                                     (click)="onSearch()">Go</button></div>
                         </div>
                         <br>
+                    </div> -->
+
+                    <div class="searchbar">
+                        <a class="search_icon"><i class="fas fa-search"></i></a>
+
+                        <!-- <input class="search_input" type="text" name="" placeholder="Search..."> -->
+                        <input type="text" [(ngModel)]="inputItem" (ngModelChange)="getFilteredList()"
+                            class="search_input combobox-input" (keyup)="onKeyPress($event)"
+                            (blur)="toggleListDisplay(0)" (focus)="toggleListDisplay(1)"
+                            placeholder="Enter a Destination ...">
+
+                        <a (click)="onSearch()" class="search_btn">Go</a>
+                    </div>
+                    <div class="combobox-options" *ngIf="!listHidden">
+                        <list-item *ngFor="let item of filteredList;let i = index" (click)="selectItem(i)"
+                            [ngClass]="{'selected': i===selectedIndex}">{{item.name}} <span
+                                *ngIf="item && item.parent != null">-&nbsp;{{item.parent}}</span></list-item>
                     </div>
                 </div>
             </ng-container>

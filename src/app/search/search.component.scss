@@ -108,7 +108,7 @@ caption {
 .tableTilte {
     color: #97ecff;
     font-size: 33px;
-    font-family: phosphatesolid,Avenir-Light,"Open Sans",open-sans,sans-serif;
+    font-family: phosphatesolid, Avenir-Light, "Open Sans", open-sans, sans-serif;
     text-align: left;
     text-shadow: 0 1px 25px rgb(0 0 0 / 20%);
     line-height: 100%;
@@ -174,6 +174,7 @@ list-item:hover {
 input {
     background-color: #0002;
 }
+
 ::-webkit-input-placeholder {
     color: white;
 }
@@ -195,6 +196,7 @@ tbody tr td a {
     width: 100% !important;
     background-color: #0002 !important;
 }
+
 .header2 {
     z-index: 10;
     background-color: #000 !important;
@@ -203,6 +205,7 @@ tbody tr td a {
         border: 1.5px solid #e3e6ed;
     }
 }
+
 .nav {
     height: 50px;
     padding: 7px 15px;
@@ -348,7 +351,7 @@ caption {
 nav {
     width: 100%;
     height: 50px;
-    background-color: #0001;
+    background-color: #0002;
     line-height: 50px;
 }
 
@@ -384,4 +387,72 @@ nav a {
     background-clip: padding-box;
     border: 7px solid transparent;
     border-radius: 20px;
+}
+
+
+.searchbar {
+    margin-bottom: auto;
+    margin-top: 60px;
+    height: 60px;
+    background-color: #869099;
+    border-radius: 30px;
+    padding: 10px;
+    width: auto;
+    margin-bottom: 70px;
+}
+
+.search_input {
+    color: white;
+    border: 0;
+    outline: 0;
+    background: none;
+    width: 0;
+    caret-color: transparent;
+    line-height: 40px;
+    transition: width 0.4s linear;
+}
+
+.searchbar .search_input {
+    padding: 0 10px;
+    width: 450px;
+    caret-color: white;
+    transition: width 0.4s linear;
+    font-size: 18px;
+}
+
+.searchbar .search_icon .search_btn {
+    color: white !important;
+    font-size: 18px;
+
+}
+
+.search_icon,
+.search_btn {
+    height: 40px;
+    width: 40px;
+    float: left;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color: white !important;
+    text-decoration: none;
+    font-size: 18px;
+    display: grid;
+
+}
+
+.search_btn {
+    float: right !important;
+    background-color: #ff6161 !important;
+    border-color: #ff6161 !important;
+    border-radius: 17px;
+}
+
+.hedSearch {
+
+    .search_icon,
+    .search_btn {
+        display: grid !important;
+        margin-right: 0px;
+    }
 }

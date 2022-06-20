@@ -218,6 +218,8 @@ tbody tr td a {
 .searchPage {
     .form-control {
         border: 1.5px solid #e3e6ed;
+        background-color: #0001;
+
     }
 }
 
@@ -356,4 +358,15 @@ nav a {
     list-style-type: none;
     display: inline-block;
     transition: 0.7s all;
+}
+
+.form-control {
+    color: #e3e6ed;
+}
+
+.hedSearch {
+    .form-control {
+        background-color: #0001;
+
+    }
 }

@@ -4,7 +4,7 @@
 // }
 .content {
     margin-top: 140px;
-    color: #F7F8FD;
+    color: #f7f8fd;
 }
 
 .card {
@@ -20,7 +20,7 @@
 
 input.form-control:focus {
     box-shadow: none;
-    background-color: #F7F8FD;
+    background-color: #f7f8fd;
     letter-spacing: 1px;
 }
 
@@ -37,18 +37,18 @@ input.form-control:focus {
 
 .text {
     font-size: 13px;
-    color: #9CA1A4;
+    color: #9ca1a4;
 }
 
 .price {
-    background: #F5F8FD;
+    background: #f5f8fd;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     width: 97px;
 }
 
 .flex-row {
-    border: 1px solid #F2F2F4;
+    border: 1px solid #f2f2f4;
     border-radius: 10px;
     margin: 0 1px 0;
 }
@@ -59,7 +59,7 @@ input.form-control:focus {
 
 span.mb-2 {
     font-size: 12px;
-    color: #8896BD;
+    color: #8896bd;
 }
 
 h5 span {
@@ -85,12 +85,9 @@ caption {
     text-align: center;
 }
 
-
 .ss {
     margin-left: 300px;
 }
-
-
 
 .mainLoginInput::-webkit-input-placeholder {
     font-family: FontAwesome;
@@ -102,7 +99,6 @@ caption {
     padding-top: 2px;
     font-size: 14px;
 }
-
 
 .center {
     margin-left: auto;
@@ -116,24 +112,19 @@ caption {
     text-align: left;
     text-shadow: 0 1px 25px rgb(0 0 0 / 20%);
     line-height: 100%;
-    position: relative;
     letter-spacing: 1px;
 }
 
 table {
     border-collapse: separate;
     border-spacing: 1em 1em;
-
 }
 
-
 .combobox {
-
     margin: auto;
 }
 
 .combobox-input {
-
     width: 330px;
     border: none;
     padding: 10px;
@@ -141,12 +132,10 @@ table {
 }
 
 .combobox-input:focus {
-
     outline-style: none;
 }
 
 .combobox-options {
-
     position: absolute;
     text-align: center;
     background-color: white;
@@ -158,16 +147,13 @@ table {
     border-radius: 17px;
 }
 
-
 list-item {
-
     display: block;
     font-size: 18px;
     padding: 10px;
 }
 
 list-item:hover {
-
     background-color: grey;
     color: white;
 }
@@ -180,7 +166,6 @@ list-item:hover {
     padding: 0px;
     margin-right: 400px;
     float: right;
-
 }
 
 input {
@@ -189,45 +174,31 @@ input {
 ::-webkit-input-placeholder {
     color: white;
     text-transform: lowercase !important;
-    
 }
 
-tbody tr td  a{
-    cursor: pointer; 
+tbody tr td a {
+    cursor: pointer;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-// from a heder 
+// from a heder
 
 .header {
     box-sizing: border-box;
     font-family: Avenir-Book, "Open Sans", open-sans, sans-serif;
     line-height: 125%;
-    transition: .3s;
+    transition: 0.3s;
     background-color: inherit !important;
     position: fixed !important;
     top: 0 !important;
     width: 100% !important;
     background-color: #0002 !important;
-
 }
 .header2 {
     background-color: #000 !important;
 
     .form-control {
-        border: 1.5px solid #E3E6ED;
+        border: 1.5px solid #e3e6ed;
     }
-
 }
 .nav {
     height: 50px;
@@ -242,10 +213,13 @@ tbody tr td  a{
     top: 0px;
     margin: 0px;
     margin-left: 3px;
-
 }
 
-
+.searchPage {
+    .form-control {
+        border: 1.5px solid #e3e6ed;
+    }
+}
 
 // body {
 //     background-color: #E7E9F5;
@@ -253,7 +227,7 @@ tbody tr td  a{
 // }
 .content {
     margin-top: 140px;
-    color: #F7F8FD;
+    color: #f7f8fd;
 }
 
 .card {
@@ -269,7 +243,7 @@ tbody tr td  a{
 
 input.form-control:focus {
     box-shadow: none;
-    background-color: #F7F8FD;
+    background-color: #f7f8fd;
     letter-spacing: 1px;
 }
 
@@ -286,18 +260,18 @@ input.form-control:focus {
 
 .text {
     font-size: 13px;
-    color: #9CA1A4;
+    color: #9ca1a4;
 }
 
 .price {
-    background: #F5F8FD;
+    background: #f5f8fd;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     width: 97px;
 }
 
 .flex-row {
-    border: 1px solid #F2F2F4;
+    border: 1px solid #f2f2f4;
     border-radius: 10px;
     margin: 0 1px 0;
 }
@@ -308,26 +282,22 @@ input.form-control:focus {
 
 span.mb-2 {
     font-size: 12px;
-    color: #8896BD;
+    color: #8896bd;
 }
 
 h5 span {
     color: #869099;
 }
 
- 
 h2,
 h4,
 caption {
     text-align: center;
 }
 
-
 .ss {
     margin-left: 300px;
 }
-
-
 
 .mainLoginInput::-webkit-input-placeholder {
     font-family: FontAwesome;
@@ -348,7 +318,7 @@ caption {
     justify-content: center;
     -ms-flex-align: center;
     align-items: center;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     background-size: cover;
     background-position: center center;
     padding: 15px;
@@ -362,11 +332,8 @@ caption {
 .text-border {
     color: #fff;
     margin-top: -90px;
-
-
 }
 
- 
 #abc {
     min-height: 50vh;
     // background-image: url("https://devapi.luckytrip.co.uk/images/destinations/329.jpg");

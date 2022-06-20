@@ -57,7 +57,7 @@ export class SearchComponent implements OnInit {
       this.onClickTrending(localId);
       localStorage.removeItem('id');
     }
-    else{
+    else {
       this.getDefaultdestination();
     }
   }
@@ -303,13 +303,14 @@ export class SearchComponent implements OnInit {
   @HostListener('window:scroll', ['$event']) // for window scroll events
   onScroll(event: any) {
     let element = Array.from(document.getElementsByClassName('header') as HTMLCollectionOf<HTMLElement>)[0];
-    if (window.pageYOffset > element.clientHeight) {
-      element.classList.add("header2")
+    if (element)
+      if (window.pageYOffset > element.clientHeight) {
+        element.classList.add("header2")
 
-    }
-    else {
-      element.classList.remove("header2")
-    }
+      }
+      else {
+        element.classList.remove("header2")
+      }
   }
 
 }

@@ -7,60 +7,6 @@
     </div>
 </div>
 
-<!-- <ng-container *ngIf="!isBusy">
-    <div class="content" *ngIf="showTable">
-        <h2>
-            Search LuckyTrip
-        </h2>
-
-        <h4>
-            350 destination, 1500 blog posts,Unlimited Trips
-        </h4>
-
-    </div>
-    <div class="container d-flex justify-content-center" [ngClass]=" showTable == false ? 'hedSearch' : 'searchPage'">
-        <div class="card mt-5 p-4">
-            <div class="input-group mb-3">
-                <input type="text" [(ngModel)]="inputItem" (ngModelChange)="getFilteredList()"
-                    class="combobox-input form-control mainLoginInput" (keyup)="onKeyPress($event)"
-                    (blur)="toggleListDisplay(0)" (focus)="toggleListDisplay(1)"
-                    placeholder="&#61442; Enter a Destination">
-                <div class="combobox-options" *ngIf="!listHidden">
-                    <list-item *ngFor="let item of filteredList;let i = index" (click)="selectItem(i)"
-                        [ngClass]="{'selected': i===selectedIndex}">{{item.name}} <span
-                            *ngIf="item && item.parent != null">-&nbsp;{{item.parent}}</span></list-item>
-                </div>
-                <div class="input-group-append"><button class="btn btn-primary" (click)="onSearch()">Go</button></div>
-            </div>
-            <br>
-        </div>
-
-
-
-    </div>
-    <table class="center" style="width: 50%" *ngIf="showTable && numberLoop !=0">
-        <thead>
-            <caption class="tableTilte">Trending</caption>
-
-        </thead>
-        <tbody>
-            <tr scope="row" *ngFor="let item of  [].constructor(numberLoop); index as i;">
-                <td *ngFor="let d_item of  getData(i); index as k;">
-                    <a (click)="onClickTrending(d_item)" data-toggle="tooltip" data-placement="top"
-                        [title]="d_item.city+' - '+ d_item.country_name">
-                        <img [src]="d_item.image_url" onerror="this.src = './../assets/defaultCity.png'" alt=""
-                            width="310px" height="230px"
-                            style="display: flex;  justify-content: center;  margin: auto; border-radius: 10px">
-                    </a>
-
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</ng-container> -->
-
-
-
 <ng-container *ngIf="!isBusy">
     <div *ngIf="!destination" class="header">
         <nav>
@@ -82,8 +28,8 @@
             </h4>
 
         </div>
-        <div class="container d-flex justify-content-center"
-            [ngClass]=" showTable == false ? 'hedSearch' : 'searchPage'">
+        <div  *ngIf="showTable" class="container d-flex justify-content-center"
+            [ngClass]="'searchPage'">
             <div class="card mt-5 p-4">
                 <div class="input-group mb-3">
                     <input type="text" [(ngModel)]="inputItem" (ngModelChange)="getFilteredList()"

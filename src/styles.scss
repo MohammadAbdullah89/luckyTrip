@@ -251,6 +251,9 @@ body {
             margin-top: 67px !important;
 
         }
+        .combobox-options {
+            width: 250px !important;
+        }
     }
 
     .wrapper {
@@ -313,6 +316,9 @@ body {
     .hedSearch {
         .searchbar {
             margin-top: 67px !important;
+        }
+        .combobox-options {
+            width: 250px !important;
         }
     }
 
@@ -379,6 +385,13 @@ body {
             margin-top: 67px !important;
 
         }
+
+        .combobox-options {
+            width: 100px !important;
+            margin-right: 100px !important;
+
+        }
+
     }
 }
 @media screen and (max-width: 750px) {
@@ -424,7 +437,9 @@ body {
         }
 
         .combobox-options {
-            width: 200px !important;
+            width: 170px !important;
+            margin-right: 100px !important;
+
         }
     }
 
@@ -450,6 +465,7 @@ body {
     }
 }
 
+ 
 .colored-toast.swal2-icon-success {
     background-color: #a5dc86 !important;
 }

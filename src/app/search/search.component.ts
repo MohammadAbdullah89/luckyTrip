@@ -256,13 +256,10 @@ export class SearchComponent implements OnInit {
 
 
   }
-  getData(number: number) {
-    if (this.destinations.length == 0) {
-      return [];
-    }
-    else {
-      return this.destinations.slice(number, number + 3);
-    }
+  getData() {
+  
+      return this.destinations;
+   
   }
   onClickTrending(data: any) {
     // this.DestinationId.emit(data.id);

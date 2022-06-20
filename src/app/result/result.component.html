@@ -8,17 +8,31 @@
 </div>
 
 <ng-container *ngIf="!isBusy">
-    <div class="content wrapper">
-        <h2>
-            What is it like?
-        </h2>
+    <div class="container">
+        <div class="content wrapper">
+            <h2>
+                What is it like?
+            </h2>
 
-        <p *ngIf="destination && destination.description" [innerHtml]="destination.description.text">
-        </p>
+            <p *ngIf="destination && destination.description" [innerHtml]="destination.description.text">
+            </p>
 
+        </div>
+
+        <caption class="tableTilte">Blog Posts</caption>
+
+        <div class="row">
+
+            <div class="locationCol col-12 col-md-6 col-lg-4" style="overflow:hidden"
+                *ngFor="let a_item of  listActivities">
+                <img [src]="a_item.thumbnail.image_url" alt="" onerror="this.src = './../assets/defaultCity.png'" alt=""
+                    height="350px" style="flex: none;">
+            </div>
+        </div>
     </div>
 
-    <table class="center" style="width: 50%">
+
+    <!-- <table class="center" style="width: 50%">
         <thead>
             <caption class="tableTilte">Blog Posts</caption>
 
@@ -33,7 +47,7 @@
                 </td>
             </tr>
         </tbody>
-    </table>
+    </table> -->
     <div class="content">
         <h4>
             Find a trip to Roma

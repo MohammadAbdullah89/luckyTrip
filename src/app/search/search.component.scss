@@ -107,12 +107,15 @@ caption {
 
 .tableTilte {
     color: #97ecff;
-    font-size: 43px;
-    font-family: phosphatesolid, Avenir-Light, "Open Sans", open-sans, sans-serif;
+    font-size: 33px;
+    font-family: phosphatesolid,Avenir-Light,"Open Sans",open-sans,sans-serif;
     text-align: left;
     text-shadow: 0 1px 25px rgb(0 0 0 / 20%);
     line-height: 100%;
     letter-spacing: 1px;
+    width: 168px;
+    padding: 30px 0px 15px;
+
 }
 
 table {
@@ -194,6 +197,7 @@ tbody tr td a {
     background-color: #0002 !important;
 }
 .header2 {
+    z-index: 10;
     background-color: #000 !important;
 
     .form-control {
@@ -369,4 +373,16 @@ nav a {
         background-color: #0001;
 
     }
+}
+
+.locationCol {
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
+
+[class*="col-"] {
+    background-clip: padding-box;
+    border: 7px solid transparent;
+    border-radius: 20px;
 }

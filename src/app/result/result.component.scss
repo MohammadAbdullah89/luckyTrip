@@ -123,6 +123,7 @@ h4,caption,p {
     line-height: 100%;
     letter-spacing: 1px;
     width: 168px;
+    padding: 30px 0px 15px;
 }
 
 table {
@@ -141,11 +142,8 @@ table {
   .wrapper {
     float: left;
     font-size: 18px;
-    width: 65%;
-    max-width: 65%;
     margin: 0;
     text-align: justify !important;
-    margin-left: 475px;
   }
 
   .wrapper p,h2 {
@@ -154,7 +152,6 @@ table {
 
   .wrapper p {
     text-align: justify !important;
-    width: 70%;
     font-size: 15x;
 
   }
@@ -222,4 +219,17 @@ table {
     -ms-transform: scale(0.9);
     transform: scale(0.9);
   }
+}
+
+
+.locationCol {
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+[class*="col-"] {
+  background-clip: padding-box;
+  border: 7px solid transparent;
+  border-radius: 20px;
 }

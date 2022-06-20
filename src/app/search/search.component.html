@@ -17,7 +17,7 @@
     </div>
     <!-- <app-search *ngIf="!destination" [showTable]="true" (DestinationId)="fnDestinationId($event)"></app-search> -->
 
-    <ng-container >
+    <ng-container>
         <div class="content" *ngIf="showTable">
             <h2>
                 Search LuckyTrip
@@ -28,8 +28,7 @@
             </h4>
 
         </div>
-        <div  *ngIf="showTable" class="container d-flex justify-content-center"
-            [ngClass]="'searchPage'">
+        <div *ngIf="showTable" class="container d-flex justify-content-center" [ngClass]="'searchPage'">
             <div class="card mt-5 p-4">
                 <div class="input-group mb-3">
                     <input type="text" [(ngModel)]="inputItem" (ngModelChange)="getFilteredList()"
@@ -50,33 +49,26 @@
 
 
         </div>
-        <table class="center" style="width: 50%" *ngIf="showTable && numberLoop !=0">
-            <thead>
-                <caption class="tableTilte">Trending</caption>
 
-            </thead>
-            <tbody>
-                <tr scope="row" *ngFor="let item of  [].constructor(numberLoop); index as i;">
-                    <td *ngFor="let d_item of  getData(i); index as k;">
-                        <a (click)="onClickTrending(d_item.id)" data-toggle="tooltip" data-placement="top"
-                            [title]="d_item.city+' - '+ d_item.country_name">
-                            <img [src]="d_item.image_url" onerror="this.src = './../assets/defaultCity.png'" alt=""
-                                width="310px" height="230px"
-                                style="display: flex;  justify-content: center;  margin: auto; border-radius: 10px">
-                            <!-- {{d_item.city}}
-                            -
-                            {{d_item.country_name}} -->
+        <div class="container" *ngIf="showTable && numberLoop !=0">
+        <caption class="tableTilte">Trending</caption>
 
-                        </a>
-
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+            <div class="row">
+                <div class="locationCol col-12 col-md-6 col-lg-4" style="overflow:hidden" *ngFor="let d_item of  destinations">
+                    <a (click)="onClickTrending(d_item.id)" data-toggle="tooltip" data-placement="top"
+                        [title]="d_item.city+' - '+ d_item.country_name">
+                        <img [src]="d_item.image_url" onerror="this.src = './../assets/defaultCity.png'" alt=""
+                            height="350px" style="flex: none;">
+                    </a>
+                </div>
+            </div>
+        </div>
+        
     </ng-container>
 
 
-    <div *ngIf="destination && activities.length != 0 && !isBusy" id="abc" style="background-image: url({{destination.thumbnail.image_url}})">
+    <div *ngIf="destination && activities.length != 0 && !isBusy" id="abc"
+        style="background-image: url({{destination.thumbnail.image_url}})">
         <nav class="header">
             <a class="navbar-brand" href="#">
                 <img src="../../assets/header-logo.png" alt="" class="logo">

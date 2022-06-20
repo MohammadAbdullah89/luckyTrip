@@ -1,13 +1,4 @@
-<div *ngIf="isBusy" style="width:100%;height:100vh;background:#000;position: absolute;z-index: 105;" id="loader">
-    <div class="la-ball-scale-ripple-multiple la-2x"
-        style="position: absolute;left: 50%;top: 50%;transform: translate(-50%,-50%);">
-        <div></div>
-        <div></div>
-        <div></div>
-    </div>
-</div>
-
-<ng-container *ngIf="!isBusy">
+<ng-container>
     <div class="container">
         <div class="content wrapper">
             <h2>
@@ -30,24 +21,6 @@
             </div>
         </div>
     </div>
-
-
-    <!-- <table class="center" style="width: 50%">
-        <thead>
-            <caption class="tableTilte">Blog Posts</caption>
-
-        </thead>
-        <tbody>
-            <tr *ngFor="let item of  [].constructor(numberLoop); index as i;">
-                <td *ngFor="let a_item of  getData(i); index as k;">
-                    <img [src]="a_item.thumbnail.image_url" alt="" onerror="this.src = './../assets/defaultCity.png'"
-                        width="310px" height="230px"
-                        style="display: flex;  justify-content: center;  margin: auto; border-radius: 10px">
-
-                </td>
-            </tr>
-        </tbody>
-    </table> -->
     <div class="content" style="margin: 40px;">
         <h4 style="color: #f27474;">
             Find a trip to Rome

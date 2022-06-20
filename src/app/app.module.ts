@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SearchComponent } from './search/search.component';
 import { ResultComponent } from './result/result.component';
-import { CountriesService } from './services/countries.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // this is needed!
@@ -31,7 +30,7 @@ import { SearchService } from './services/search.service';
 
 
   ],
-  providers: [CountriesService,SearchService],
+  providers: [SearchService],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA]
 })

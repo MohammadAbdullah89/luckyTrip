@@ -1,5 +1,4 @@
 import { Component, Input, OnInit, Output, EventEmitter, HostListener } from '@angular/core';
-import { CountriesService } from "../services/countries.service";
 import { SearchService } from "../services/search.service";
 
 import { Observable, Subject } from 'rxjs';
@@ -14,19 +13,11 @@ export class SearchComponent implements OnInit {
 
   @Input() showTable = true;
 
-  // @Output() listDestination: EventEmitter<any[]> =
-  //   new EventEmitter<any[]>();
-
-  // @Output() DestinationId: EventEmitter<number> =
-  //   new EventEmitter<number>();
-
   DestinationId: number = 0;
 
-  constructor(private countriesService: CountriesService,
-    private searchService: SearchService,
+  constructor(private searchService: SearchService,
   ) { }
 
-  countryInfo: any[] = [];
   autocompleteItems: any[] = [];
   clients: any[] = [];
 
@@ -49,44 +40,17 @@ export class SearchComponent implements OnInit {
   destination: any = null;
   activities: any[] = [];
 
-  ngOnInit(): void {
-    this.getCountries()
+  filterDestinations: any[] = [];
 
+  ngOnInit(): void {
+    // this.getCountries()
+
+    this.getDefaultdestination();
     let localId = localStorage.getItem('id');
     if (localId != null && localId != '0') {
       this.onClickTrending(localId);
       localStorage.removeItem('id');
     }
-    else {
-      this.getDefaultdestination();
-    }
-  }
-
-  getCountries() {
-
-    this.isBusy = true;
-    this.countriesService.allCountries().subscribe(
-      data2 => {
-
-        setTimeout(() => {
-          this.isBusy = false;
-        }, 800);;
-
-
-        this.countryInfo = data2.Countries;
-        this.countryInfo.forEach((elementc: any) => {
-          this.autocompleteItems.push({ name: elementc.CountryName, type: 'country', parent: null });
-          elementc.States.forEach((elementCity: any) => {
-            this.autocompleteItems.push({ name: elementCity.StateName, type: 'city', parent: elementc.CountryName });
-          });
-        });
-
-      },
-      err => {
-        this.isBusy = false;
-        console.log(err)
-      }
-    );
   }
 
   // modifies the filtered list as per input
@@ -183,11 +147,22 @@ export class SearchComponent implements OnInit {
 
         setTimeout(() => {
           this.isBusy = false;
-        }, 800);;
+        }, 800);
 
         this.destinations = data2.destinations;
+        this.filterDestinations = this.destinations.slice(0, 6);
+
         if (this.destinations.length != 0) {
           this.numberLoop = Math.ceil(this.destinations.length / 3);
+          this.autocompleteItems = [];
+          this.destinations.forEach((element: any) => {
+            if (this.autocompleteItems.find(x => x.name.toLowerCase() == element.country_name.toLowerCase()) == null)
+              this.autocompleteItems.push({ id: element.id, name: element.country_name, type: 'country', parent: null, image_url: element.image_url });
+
+            if (this.autocompleteItems.find(x => x.name.toLowerCase() == element.city.toLowerCase()) == null)
+              this.autocompleteItems.push({ id: element.id, name: element.city, type: 'city', parent: element.country_name, image_url: element.image_url });
+          });
+          this.searchService.destinationStoreg = this.autocompleteItems;
         }
       },
       err => {
@@ -196,71 +171,8 @@ export class SearchComponent implements OnInit {
       }
     );
   }
-  onSearch() {
-
-    this.showTable = true;
-    // this.DestinationId.emit(0);
-    this.DestinationId = 0;
-
-    if (this.inputItem == null || this.inputItem == '')
-      this.getDefaultdestination()
-    else {
-      if (this.inputItemObj == undefined || this.inputItemObj == null) {
-        this.inputItemObj = ({ name: this.inputItem, type: "city_or_country", parent: null })
-      }
 
 
-      this.isBusy = true;
-      this.destination = null;
-      this.activities = [];
-      this.searchService.search(this.inputItemObj['type'], this.inputItemObj['name']).subscribe(
-        async data2 => {
-          setTimeout(() => {
-            this.isBusy = false;
-          }, 800);;
-
-          if (data2.destinations.length == 0) {
-            const Toast = swal.mixin({
-              toast: true,
-              position: 'top-right',
-              iconColor: 'white',
-              customClass: {
-                popup: 'colored-toast'
-              },
-              showConfirmButton: false,
-              timer: 2500,
-            })
-            setTimeout(() => {
-
-              Toast.fire({
-                icon: 'error',
-                title: "No results found for '" + this.inputItem + "'"
-              })
-            }, 1000);;
-
-          }
-          else {
-            this.destinations = data2.destinations;
-            this.numberLoop = Math.ceil(this.destinations.length / 3);
-            this.inputItemObj = null
-          }
-        },
-        err => {
-          this.isBusy = false;
-          console.log(err)
-        }
-      );
-
-    }
-
-
-
-  }
-  getData() {
-  
-      return this.destinations;
-   
-  }
   onClickTrending(data: any) {
     // this.DestinationId.emit(data.id);
     this.showTable = false;
@@ -308,6 +220,121 @@ export class SearchComponent implements OnInit {
       else {
         element.classList.remove("header2")
       }
+  }
+  onSearchWithoutServerRequist() {
+    this.showTable = true;
+
+    this.isBusy = true;
+    this.destination = null;
+    this.activities = [];
+    if (this.destinations && this.destinations.length == 0) {
+      this.filterDestinations = this.destinations.slice(0, 6);
+    }
+    else {
+      if (this.inputItem == null || this.inputItem == '') {
+        this.filterDestinations = this.destinations.slice(0, 6);
+      }
+      else {
+        if (this.inputItemObj != null && this.inputItemObj != undefined) {
+          if (this.inputItemObj.type == 'city') {
+            this.filterDestinations = this.destinations.filter((x: { city: string | any; }) => x.city.includes(this.inputItemObj.name)).slice(0, 6)
+          }
+          else if (this.inputItemObj.type == 'country') {
+            this.filterDestinations = this.destinations.filter((x: { country_name: string | any; }) => x.country_name.includes(this.inputItemObj.name)).slice(0, 6)
+          }
+          else {
+            this.filterDestinations = this.destinations.filter((x: { city: string | any; country_name: string | any; }) => x.city.includes(this.inputItemObj.name) || x.country_name.includes(this.inputItemObj.name)).slice(0, 6)
+
+          }
+        }
+        else {
+          this.filterDestinations = this.destinations.filter((x: { city: string | any; country_name: string | any; }) => x.city.includes(this.inputItem) || x.country_name.includes(this.inputItem)).slice(0, 6)
+        }
+      }
+
+    }
+    this.isBusy = false;
+    this.numberLoop = Math.ceil(this.destinations.length / 3);
+    this.inputItemObj = null
+    if (this.filterDestinations.length == 0) {
+      setTimeout(() => {
+        const Toast = swal.mixin({
+          toast: true,
+          position: 'top-right',
+          iconColor: 'white',
+          customClass: {
+            popup: 'colored-toast'
+          },
+          showConfirmButton: false,
+          timer: 2500,
+        })
+        Toast.fire({
+          icon: 'error',
+          title: "No results found for '" + this.inputItem + "'"
+        })
+      }, 1000);
+    }
+  }
+
+  onSearch() {
+    this.showTable = true;
+    this.DestinationId = 0;
+
+    if (this.inputItem == null || this.inputItem == '')
+      this.getDefaultdestination()
+    else {
+      if (this.inputItemObj == undefined || this.inputItemObj == null) {
+        this.inputItemObj = ({ name: this.inputItem, type: "city_or_country", parent: null })
+      }
+
+
+      this.isBusy = true;
+      this.destination = null;
+      this.activities = [];
+      this.searchService.search(this.inputItemObj['type'], this.inputItemObj['name']).subscribe(
+        async data2 => {
+          setTimeout(() => {
+            this.isBusy = false;
+          }, 800);;
+
+          if (data2.destinations.length == 0) {
+            const Toast = swal.mixin({
+              toast: true,
+              position: 'top-right',
+              iconColor: 'white',
+              customClass: {
+                popup: 'colored-toast'
+              },
+              showConfirmButton: false,
+              timer: 2500,
+            })
+            setTimeout(() => {
+
+              Toast.fire({
+                icon: 'error',
+                title: "No results found for '" + this.inputItem + "'"
+              })
+            }, 1000);
+
+          }
+          else {
+            this.destinations = data2.destinations;
+            this.filterDestinations = this.destinations;
+
+            this.numberLoop = Math.ceil(this.destinations.length / 3);
+            this.inputItemObj = null
+          }
+        },
+        err => {
+          this.isBusy = false;
+          console.log(err)
+        }
+      );
+
+    }
+
+
+
   }
 
 }

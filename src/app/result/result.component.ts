@@ -11,12 +11,9 @@ export class ResultComponent implements OnInit {
 
 
   numberLoop: number = 0;
-  isBusy = false;
   constructor() { }
 
   ngOnInit(): void {
-    this.isBusy = true;
-
     if (this.listActivities.length != 0) {
       this.numberLoop = Math.ceil(this.listActivities.length / 3);
     }
@@ -32,7 +29,6 @@ export class ResultComponent implements OnInit {
   }
 
   ngAfterViewInit(){
-    this.isBusy = false;
  
   }
   ngAfterContentInit() {

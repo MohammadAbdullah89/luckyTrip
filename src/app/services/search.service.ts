@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class SearchService {
 
-
+    destinationStoreg: any[] | undefined;
     constructor(private http: HttpClient) { }
 
     search(type: string, value: string): Observable<any> {

@@ -76,7 +76,7 @@
 
             <!-- <app-search *ngIf="destination" [showTable]="false" (DestinationId)="fnDestinationId($event)"></app-search> -->
 
-            <ng-container *ngIf="!isBusy">
+            <ng-container *ngIf="!isBusy && showTable == false">
                 <div class="container d-flex justify-content-center"
                     [ngClass]=" showTable == false ? 'hedSearch' : 'searchPage'">
                     <div class="card mt-5 p-4">

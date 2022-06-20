@@ -315,19 +315,7 @@ h5 span {
     color: #869099;
 }
 
-@media screen and (max-width: 450px) {
-    .card {
-        display: flex;
-        justify-content: center;
-        text-align: center;
-    }
-
-    .price {
-        border: none;
-        margin: 0 auto;
-    }
-}
-
+ 
 h2,
 h4,
 caption {
@@ -378,12 +366,7 @@ caption {
 
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    font-family: verdana;
-}
-
+ 
 #abc {
     min-height: 50vh;
     // background-image: url("https://devapi.luckytrip.co.uk/images/destinations/329.jpg");

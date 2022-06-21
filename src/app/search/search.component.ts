@@ -196,7 +196,7 @@ export class SearchComponent implements OnInit {
         },
         err => {
           this.isBusy = false;
-          this.getDefaultdestination()
+          this.getDefaultdestination();
           console.log(err)
         }
       );
@@ -206,6 +206,10 @@ export class SearchComponent implements OnInit {
       this.destination = null;
       this.activities = [];
 
+    }
+    if (this.destination == null) {
+      this.showTable = true;
+      this.getDefaultdestination();
     }
 
   }

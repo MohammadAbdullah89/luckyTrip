@@ -196,6 +196,7 @@ export class SearchComponent implements OnInit {
         },
         err => {
           this.isBusy = false;
+          this.getDefaultdestination()
           console.log(err)
         }
       );

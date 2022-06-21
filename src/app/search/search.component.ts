@@ -208,7 +208,6 @@ export class SearchComponent implements OnInit {
 
     }
     if (this.destination == null) {
-      this.showTable = true;
       this.getDefaultdestination();
     }
 
